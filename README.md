@@ -17,5 +17,5 @@ Install the library that is missing in order to run the script
 
 ```sh
 $ cd dotatify
-$ python3 dotatify.py
+$ python3 main.py
 ```
