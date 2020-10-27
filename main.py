@@ -44,14 +44,14 @@ def main():
 		matchData['schedule']['time'] = "{:d}:{:02d}".format(processedSchedule.hour, processedSchedule.minute)
 		matchData['tournament'] = match.find_all('a')[5].text
 		matches.append(copy.deepcopy(matchData))
-			
+
 	nextMatch = matches[0]
 	schedule = str(nextMatch['schedule']['month']) + ' ' + str(nextMatch['schedule']['day']) + ' ' + str(nextMatch['schedule']['year']) + ' ' + str(nextMatch['schedule']['time'])
 	#Notify a match in upcoming 1 hour
-	# if (datetime.now() + timedelta(hours=1) > datetime.strptime(schedule, '%m %d %Y %H:%M')): 
-	title = "Incoming 496 match"
-	message = nextMatch['teamLeft'] + ' ' + nextMatch['bestOf'] + ' ' +  nextMatch['teamRight'] + ' at ' + nextMatch['schedule']['time'] + '\n' + nextMatch['tournament']
-	toaster.show_toast(title, message, duration=5, threaded=None)
+	if (datetime.now() + timedelta(hours=1) > datetime.strptime(schedule, '%m %d %Y %H:%M')): 
+		title = "Incoming 496 match"
+		message = nextMatch['teamLeft'] + ' ' + nextMatch['bestOf'] + ' ' +  nextMatch['teamRight'] + ' at ' + nextMatch['schedule']['time'] + '\n' + nextMatch['tournament']
+		toaster.show_toast(title, message, duration=5, threaded=None)
 
 def cleaningArray(array):
 	removetable = str.maketrans('', '', '!@#$%^&*()-_=+[]{}"\'/?.,<>\\|')
